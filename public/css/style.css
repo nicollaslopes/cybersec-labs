@@ -1,0 +1,140 @@
+
+@font-face {
+    font-family: 'Fixedsys';
+    src: url('/fonts/Fixedsys.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+/* Resetando margens e paddings padrão */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Fonte padrão */
+body {
+    font-family: 'Fixedsys', monospace !important;
+    background: #f0f4f8;
+    color: #333;
+    line-height: 1.6;
+}
+
+/* Container principal */
+.container {
+    width: 90%;
+    margin: 0 auto;
+    padding: 30px 20px;
+}
+
+/* Cabeçalho */
+header {
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+/* Título com sombra e gradiente suave */
+header h1 {
+    font-family: 'Poppins', sans-serif;
+    font-size: 48px;
+    font-weight: 700;
+    color: #222;
+    background: linear-gradient(135deg, #4a90e2, #0078d4);
+    -webkit-background-clip: text;
+    color: transparent;
+    text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.2);
+    margin-bottom: 20px;
+    animation: fadeIn 2s ease-out;
+}
+
+/* Animação de Fade-in suave */
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Seção de cards */
+.cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); /* Cards um pouco menores */
+    gap: 20px; /* Menor espaçamento entre os cards */
+}
+
+/* Card Individual */
+.card {
+    background: linear-gradient(135deg, #2a3d66, #1f2c48); /* Cor uniforme para todos os cards */
+    color: #fff;
+    border-radius: 10px;
+    padding: 20px 15px; /* Padding menor para cards mais compactos */
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1); /* Sombra mais suave */
+    transition: transform 0.3s, box-shadow 0.3s ease, border 0.3s ease;
+    position: relative;
+    overflow: hidden;
+    display: flex; /* Flexbox para centralizar conteúdo */
+    flex-direction: column; /* Colocar o conteúdo em coluna */
+    justify-content: space-between; /* Espaçamento entre o título e o botão */
+    text-align: center; /* Garantir que o texto fique centralizado */
+    height: 220px; /* Card um pouco menor */
+}
+
+/* Títulos dos cards */
+.card h3 {
+    font-family: 'Fixedsys', sans-serif;
+    font-weight: 600;
+    font-size: 20px; /* Tamanho do título ajustado */
+    color: #fff;
+    text-transform: uppercase;
+    margin-bottom: 15px; /* Menor espaçamento entre o título e o botão */
+}
+
+/* Estilo do botão */
+.card-button {
+        font-family: 'Fixedsys', sans-serif;
+
+    background-color: #0078d4; /* Cor do botão */
+    color: #fff; /* Texto branco */
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px; /* Tamanho do botão ajustado */
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.card-button:hover {
+    background-color: #005fa3; /* Cor do botão ao passar o mouse */
+}
+
+/* Efeito hover nos cards */
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+    border: 2px solid #fff;
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+    .container {
+        width: 95%;
+    }
+
+    header h1 {
+        font-size: 40px;
+    }
+
+    .card {
+        height: 250px; /* Ajusta a altura do card para telas pequenas */
+    }
+
+    .card-button {
+        font-size: 14px;
+        padding: 8px 15px;
+    }
+}
