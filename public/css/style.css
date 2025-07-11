@@ -19,6 +19,10 @@ body {
     color: #333;
     line-height: 1.6;
 }
+html, body {
+    height: 100%;
+    background: #f0f4f8;
+}
 
 /* Container principal */
 .container {
