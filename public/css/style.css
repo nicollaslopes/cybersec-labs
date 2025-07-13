@@ -129,3 +129,50 @@ header h1 {
         padding: 8px 15px;
     }
 }
+
+/* Botão de modo escuro */
+.dark-mode-btn {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    background-color: #222;
+    color: #fff;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 5px;
+    font-family: 'Fixedsys', monospace;
+    cursor: pointer;
+    z-index: 1000;
+    transition: background-color 0.3s;
+}
+
+.dark-mode-btn:hover {
+    background-color: #444;
+}
+
+/* Modo Dark */
+body.dark-mode {
+    background-color: #0f1117;
+    color: #e0e0e0;
+}
+
+body.dark-mode header h1 {
+    color: #e0e0e0;
+    background: linear-gradient(135deg, #5c6bc0, #7986cb);
+    -webkit-background-clip: text;
+    color: transparent;
+}
+
+body.dark-mode .card {
+    background: linear-gradient(135deg, #1a1a2e, #16213e);
+    color: #fff;
+    border: 1px solid #444;
+}
+
+body.dark-mode .card-button {
+    background-color: #3949ab;
+}
+
+body.dark-mode .card-button:hover {
+    background-color: #303f9f;
+}

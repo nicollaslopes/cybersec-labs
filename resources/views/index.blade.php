@@ -10,6 +10,7 @@
 <body>
     <div class="container">
         <header>
+            <button id="toggle-dark-mode" class="dark-mode-btn">🌙</button>
             <h1>Pentesting Lab</h1>
         </header>
 
@@ -26,5 +27,6 @@
 
         </section>
     </div>
+    <script src="{{ asset('js/index.js')}}"></script>
 </body>
 </html>
