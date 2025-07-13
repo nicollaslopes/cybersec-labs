@@ -29,6 +29,8 @@
             <textarea id="description" name="description" rows="4" placeholder="Your description..." required></textarea>
 
             <button type="submit">Send</button>
+
+            <a href="{{ url()->previous() }}" class="btn-back">⬅ Go back</a>
         </form>
     </div>
 </body>
