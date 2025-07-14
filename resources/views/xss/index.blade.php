@@ -10,7 +10,9 @@
 <body>
     <div class="container">
         <header>
+            <a href="{{ route('dashboard.show') }}">
             <h1>Pentesting Lab</h1>
+            </a>
         </header>
 
         <section class="cards">
