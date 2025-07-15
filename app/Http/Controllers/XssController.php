@@ -13,7 +13,6 @@ class XssController extends Controller
         $id = Vulnerability::where('name', 'xss')->first();
 
         $vulns = VulnerabilityDetails::where('id_vulnerability', $id->id)->get();
-        
 
         return view('xss.index', ['vulns' => $vulns]);
     }
