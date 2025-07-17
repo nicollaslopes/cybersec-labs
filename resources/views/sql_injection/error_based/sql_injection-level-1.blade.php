@@ -10,7 +10,7 @@
 <body class="bg-gray-100 text-gray-900">
 
     <div class="max-w-5xl mx-auto px-6 py-10">
-        <h1 class="text-4xl font-bold mb-8 text-center">Meu Carrinho</h1>
+        <h1 class="text-4xl font-bold mb-8 text-center">My cart</h1>
 
         <form method="GET" action="{{ route('sql_injection_level_one') }}" class="mb-8 flex flex-col md:flex-row gap-4">
             <input 
