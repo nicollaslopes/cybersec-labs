@@ -14,3 +14,5 @@ Route::get('/xss/reflected/1/sent/', [XssController::class, 'xssReflectedLevelOn
 Route::get('/xss/reflected/2/sent/', [XssController::class, 'xssReflectedLevelTwo'])->name('xss_reflected_level_two');
 
 Route::get('/sql-injection', [SqlinjectionController::class, 'show'])->name('sql_injection');
+Route::get('/sql-injection/{type}/{level}', [SqlinjectionController::class, 'handleSqlInjectionController'])->name('sql_injection_details');
+Route::get('/sql-injection/error-based/1/', [SqlinjectionController::class, 'sqlInjectionErrorBasedLevelOne'])->name('sql_injection_level_one');
