@@ -23,7 +23,7 @@ class SqlinjectionController extends Controller
     public function handleSqlInjectionController(Request $request, $type, $level)
     {
         $controllers = [
-            'error-based' => [
+            'error_based' => [
                 '1' => 'sqlInjectionErrorBasedLevelOne',
                 '2' => 'sqlInjectionErrorBasedLevelTwo'
             ],

@@ -15,4 +15,4 @@ Route::get('/xss/reflected/2/sent/', [XssController::class, 'xssReflectedLevelTw
 
 Route::get('/sql-injection', [SqlinjectionController::class, 'show'])->name('sql_injection');
 Route::get('/sql-injection/{type}/{level}', [SqlinjectionController::class, 'handleSqlInjectionController'])->name('sql_injection_details');
-Route::get('/sql-injection/error-based/1/', [SqlinjectionController::class, 'sqlInjectionErrorBasedLevelOne'])->name('sql_injection_level_one');
+Route::get('/sql-injection/error_based/1/', [SqlinjectionController::class, 'sqlInjectionErrorBasedLevelOne'])->name('sql_injection_level_one');
