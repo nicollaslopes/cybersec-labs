@@ -43,7 +43,7 @@
         @endif
     </div>
     @if (isset($error_message))
-        {{ $error_message }}
+        <p class="text-center text-sm text-gray-500 mt-2">{{ $error_message }}</p>
     @endif
 
 </body>
