@@ -2,17 +2,14 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Vulnerability;
-use App\Models\VulnerabilityDetails;
+use App\Http\Services\VulnerabilityService;
 use Illuminate\Http\Request;
 
 class XssController extends Controller
 {
     public function show()
     {
-        $id = Vulnerability::where('name', 'xss')->first();
-
-        $vulns = VulnerabilityDetails::where('id_vulnerability', $id->id)->get();
+        $vulns = VulnerabilityService::getVulnerability('xss');
 
         return view('xss.index', ['vulns' => $vulns]);
     }
