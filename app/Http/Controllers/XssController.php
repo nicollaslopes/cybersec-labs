@@ -14,11 +14,18 @@ class XssController extends Controller
         return view('xss.index', ['vulns' => $vulns]);
     }
 
-    public function showVuln($type, $level)
+    public function handleXssController(Request $request, $type, $level)
     {   
-        $file = "xss.$type.xss-level-$level";
+        $controllers = [
+            'reflected' => [
+                '1' => 'xssReflectedLevelOne',
+                '2' => 'xssReflectedLevelTwo'
+            ],
+        ];
 
-        return view ($file);
+        $method = $controllers[$type][$level];
+
+        return call_user_func([$this, $method], $request);
     }
 
     public function xssReflectedLevelOne(Request $request)
