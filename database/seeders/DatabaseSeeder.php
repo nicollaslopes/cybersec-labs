@@ -17,7 +17,8 @@ class DatabaseSeeder extends Seeder
         $this->call([
             VulnerabilitySeeder::class,
             VulnerabilityDetailsSeeder::class,
-            ProductSeeder::class
+            ProductSeeder::class,
+            UserSeeder::class
         ]);
     }
 }
