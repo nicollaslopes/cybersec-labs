@@ -18,3 +18,5 @@ Route::get('/sql-injection/{type}/{level}', [SqlinjectionController::class, 'han
 Route::get('/sql-injection/error_based/1/', [SqlinjectionController::class, 'sqlInjectionErrorBasedLevelOne'])->name('sql_injection_level_one');
 
 Route::get('/command-injection', [CommandInjectionController::class, 'show'])->name('command_injection');
+Route::get('/command-injection/{type}/{level}', [CommandInjectionController::class, 'handleCommandInjectionController'])->name('command_injection_details');
+Route::post('/command-injection/normal/1', [CommandInjectionController::class, 'commandInjectionErrorBasedLevelOne'])->name('command_injection_level_one');

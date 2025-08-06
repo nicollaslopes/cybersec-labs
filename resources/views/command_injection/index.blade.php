@@ -19,7 +19,7 @@
             @foreach ($vulns as $vuln)
             <div class="card">
                 <h3>{{ $vuln->title }}</h3>
-                <a href="{{ route('sql_injection_details', [$vuln->type, $vuln->level]) }}">
+                <a href="{{ route('command_injection_details', [$vuln->type, $vuln->level]) }}">
                     <button class="card-button">Ver Detalhes</button>
                 </a>
             </div>
