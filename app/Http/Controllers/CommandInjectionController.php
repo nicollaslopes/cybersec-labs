@@ -19,6 +19,7 @@ class CommandInjectionController extends Controller
         $controllers = [
             'normal' => [
                 '1' => 'commandInjectionErrorBasedLevelOne',
+                '2' => 'commandInjectionErrorBasedLevelTwo',
             ],
         ];
 
@@ -36,5 +37,16 @@ class CommandInjectionController extends Controller
         }
 
        return view('command_injection.normal.command_injection-level-1', ['ping' => $ping]);
+    }
+
+    public function commandInjectionErrorBasedLevelTwo(Request $request)
+    {
+        $ping = null;
+        if ($request->host) {
+            $command = "ping -c 4 " . $request->host . " | grep '64 bytes'";
+            $ping = shell_exec($command);
+        }
+
+       return view('command_injection.normal.command_injection-level-2', ['ping' => $ping]);
     }
 }
