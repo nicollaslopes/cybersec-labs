@@ -4,6 +4,7 @@ use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\SqlinjectionController;
 use App\Http\Controllers\XssController;
 use App\Http\Controllers\CommandInjectionController;
+use App\Http\Controllers\CsrfController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', [DashboardController::class, 'show'])->name('dashboard.show');
@@ -21,3 +22,7 @@ Route::get('/command-injection', [CommandInjectionController::class, 'show'])->n
 Route::get('/command-injection/{type}/{level}', [CommandInjectionController::class, 'handleCommandInjectionController'])->name('command_injection_details');
 Route::post('/command-injection/normal/1', [CommandInjectionController::class, 'commandInjectionErrorBasedLevelOne'])->name('command_injection_level_one');
 Route::post('/command-injection/normal/2', [CommandInjectionController::class, 'commandInjectionErrorBasedLevelTwo'])->name('command_injection_level_two');
+
+Route::get('/csrf', [CsrfController::class, 'show'])->name('csrf');
+Route::match(['get', 'post'],'/csrf/change/password', [CsrfController::class, 'update'])
+                ->withoutMiddleware([Illuminate\Foundation\Http\Middleware\VerifyCsrfToken::class])->name('csrf_level_one');
