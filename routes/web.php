@@ -5,6 +5,7 @@ use App\Http\Controllers\SqlinjectionController;
 use App\Http\Controllers\XssController;
 use App\Http\Controllers\CommandInjectionController;
 use App\Http\Controllers\CsrfController;
+use App\Http\Controllers\LfiController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', [DashboardController::class, 'show'])->name('dashboard.show');
@@ -26,3 +27,7 @@ Route::post('/command-injection/normal/2', [CommandInjectionController::class, '
 Route::get('/csrf', [CsrfController::class, 'show'])->name('csrf');
 Route::match(['get', 'post'],'/csrf/change/password', [CsrfController::class, 'update'])
                 ->withoutMiddleware([Illuminate\Foundation\Http\Middleware\VerifyCsrfToken::class])->name('csrf_level_one');
+
+Route::get('/lfi', [LfiController::class, 'show'])->name('lfi');
+Route::get('/lfi/{type}/{level}', [LfiController::class, 'handleLfiController'])->name('lfi_details');
+Route::get('/lfi/normal/1/', [LfiController::class, 'lfiLevelOne'])->name('lfi_level_one');
