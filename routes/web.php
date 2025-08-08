@@ -6,6 +6,7 @@ use App\Http\Controllers\XssController;
 use App\Http\Controllers\CommandInjectionController;
 use App\Http\Controllers\CsrfController;
 use App\Http\Controllers\LfiController;
+use App\Http\Controllers\RfiController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', [DashboardController::class, 'show'])->name('dashboard.show');
@@ -31,3 +32,7 @@ Route::match(['get', 'post'],'/csrf/change/password', [CsrfController::class, 'u
 Route::get('/lfi', [LfiController::class, 'show'])->name('lfi');
 Route::get('/lfi/{type}/{level}', [LfiController::class, 'handleLfiController'])->name('lfi_details');
 Route::get('/lfi/normal/1/', [LfiController::class, 'lfiLevelOne'])->name('lfi_level_one');
+
+Route::get('/rfi', [RfiController::class, 'show'])->name('rfi');
+Route::get('/rfi/{type}/{level}', [RfiController::class, 'handleRfiController'])->name('rfi_details');
+Route::get('/rfi/normal/1/', [RfiController::class, 'lfiLevelOne'])->name('rfi_level_one');
