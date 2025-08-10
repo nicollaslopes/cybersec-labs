@@ -15,14 +15,14 @@
             @csrf
             
             <div>
-                <label for="user" class="block text-sm font-medium text-gray-700 mb-1">User</label>
-                <input type="text" id="user" name="user" placeholder="Enter your user"
+                <label for="user_name" class="block text-sm font-medium text-gray-700 mb-1">User</label>
+                <input type="text" id="user_name" name="user_name" placeholder="Enter your user"
                     class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500">
             </div>
 
             <div>
-                <label for="password" class="block text-sm font-medium text-gray-700 mb-1">New Password</label>
-                <input type="password" id="password" name="password" placeholder="Enter a new password"
+                <label for="password" class="block text-sm font-medium text-gray-700 mb-1">Password</label>
+                <input type="password" id="password" name="password" placeholder="Enter password"
                     class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500">
             </div>
 

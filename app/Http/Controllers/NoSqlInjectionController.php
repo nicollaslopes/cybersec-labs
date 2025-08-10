@@ -35,7 +35,7 @@ class NoSqlInjectionController extends Controller
 
     public function noSqlInjectionNormalLevelOne(Request $request)
     {
-        $user = $request->user;
+        $user = $request->user_name;
         $password = $request->password;
 
         $userMongo = UserMongo::raw(function($collection) use ($user, $password) {
