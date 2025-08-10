@@ -6,6 +6,7 @@ use App\Http\Controllers\XssController;
 use App\Http\Controllers\CommandInjectionController;
 use App\Http\Controllers\CsrfController;
 use App\Http\Controllers\LfiController;
+use App\Http\Controllers\NoSqlInjectionController;
 use App\Http\Controllers\RfiController;
 use Illuminate\Support\Facades\Route;
 
@@ -36,3 +37,7 @@ Route::get('/lfi/normal/1/', [LfiController::class, 'lfiLevelOne'])->name('lfi_l
 Route::get('/rfi', [RfiController::class, 'show'])->name('rfi');
 Route::get('/rfi/{type}/{level}', [RfiController::class, 'handleRfiController'])->name('rfi_details');
 Route::get('/rfi/normal/1/', [RfiController::class, 'lfiLevelOne'])->name('rfi_level_one');
+
+Route::get('/no-sql-injection', [NoSqlInjectionController::class, 'show'])->name('no_sql_injection');
+Route::get('/no-sql-injection/{type}/{level}', [NoSqlInjectionController::class, 'handleNoSqlInjectionController'])->name('no_sql_injection_details');
+Route::match(['post', 'get'], '/no-sql-injection/normal/1', [NoSqlInjectionController::class, 'noSqlInjectionNormalLevelOne'])->name('no_sql_injection_level_one');
