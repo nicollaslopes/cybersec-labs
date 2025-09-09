@@ -8,6 +8,7 @@ use App\Http\Controllers\CsrfController;
 use App\Http\Controllers\LfiController;
 use App\Http\Controllers\NoSqlInjectionController;
 use App\Http\Controllers\RfiController;
+use App\Http\Controllers\TypeJuggling;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', [DashboardController::class, 'show'])->name('dashboard.show');
@@ -27,8 +28,7 @@ Route::post('/command-injection/normal/1', [CommandInjectionController::class, '
 Route::post('/command-injection/normal/2', [CommandInjectionController::class, 'commandInjectionErrorBasedLevelTwo'])->name('command_injection_level_two');
 
 Route::get('/csrf', [CsrfController::class, 'show'])->name('csrf');
-Route::match(['get', 'post'],'/csrf/change/password', [CsrfController::class, 'update'])
-                ->withoutMiddleware([Illuminate\Foundation\Http\Middleware\VerifyCsrfToken::class])->name('csrf_level_one');
+Route::match(['get', 'post'],'/csrf/change/password', [CsrfController::class, 'update'])->withoutMiddleware([Illuminate\Foundation\Http\Middleware\VerifyCsrfToken::class])->name('csrf_level_one');
 
 Route::get('/lfi', [LfiController::class, 'show'])->name('lfi');
 Route::get('/lfi/{type}/{level}', [LfiController::class, 'handleLfiController'])->name('lfi_details');
@@ -41,3 +41,8 @@ Route::get('/rfi/normal/1/', [RfiController::class, 'lfiLevelOne'])->name('rfi_l
 Route::get('/no-sql-injection', [NoSqlInjectionController::class, 'show'])->name('no_sql_injection');
 Route::get('/no-sql-injection/{type}/{level}', [NoSqlInjectionController::class, 'handleNoSqlInjectionController'])->name('no_sql_injection_details');
 Route::match(['post', 'get'], '/no-sql-injection/normal/1', [NoSqlInjectionController::class, 'noSqlInjectionNormalLevelOne'])->name('no_sql_injection_level_one');
+
+Route::get('/type-juggling', [TypeJuggling::class, 'show'])->name('type_juggling');
+Route::get('/type-juggling/{type}/{level}', [TypeJuggling::class, 'handleTypeJugglingController'])->name('type_juggling_details');
+Route::get('/type-juggling/normal/1', [TypeJuggling::class, 'typeJugglingLevelOne'])->name('type_juggling_level_one');
+Route::post('/type-juggling/api', [TypeJuggling::class, 'validateApiKey'])->withoutMiddleware([Illuminate\Foundation\Http\Middleware\VerifyCsrfToken::class])->name('type_juggling_validate_api_level_one');
