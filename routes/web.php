@@ -8,6 +8,7 @@ use App\Http\Controllers\CsrfController;
 use App\Http\Controllers\LfiController;
 use App\Http\Controllers\NoSqlInjectionController;
 use App\Http\Controllers\RfiController;
+use App\Http\Controllers\SstiController;
 use App\Http\Controllers\TypeJuggling;
 use Illuminate\Support\Facades\Route;
 
@@ -46,3 +47,7 @@ Route::get('/type-juggling', [TypeJuggling::class, 'show'])->name('type_juggling
 Route::get('/type-juggling/{type}/{level}', [TypeJuggling::class, 'handleTypeJugglingController'])->name('type_juggling_details');
 Route::get('/type-juggling/normal/1', [TypeJuggling::class, 'typeJugglingLevelOne'])->name('type_juggling_level_one');
 Route::post('/type-juggling/api', [TypeJuggling::class, 'validateApiKey'])->withoutMiddleware([Illuminate\Foundation\Http\Middleware\VerifyCsrfToken::class])->name('type_juggling_validate_api_level_one');
+
+Route::get('/ssti', [SstiController::class, 'show'])->name('ssti');
+Route::get('/ssti/{type}/{level}', [SstiController::class, 'handleSstiController'])->name('ssti_details');
+Route::get('/ssti/twig/1', [TypeJuggling::class, 'sstiTwigLevelOne'])->name('ssti_twig_level_one');
