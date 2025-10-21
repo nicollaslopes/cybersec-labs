@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Http\Services\VulnerabilityService;
 use Illuminate\Http\Request;
+use Twig\Loader\FilesystemLoader;
+use Twig\Environment;
 
 class SstiController extends Controller
 {
@@ -29,6 +31,14 @@ class SstiController extends Controller
 
     public function sstiTwigLevelOne(Request $request)
     {
-        dd('a');
+        $loader = new FilesystemLoader('../resources/views/ssti/twig');
+        $twig = new Environment($loader);
+        $test = "test";
+
+        $template = $twig->createTemplate('Dear {{ first_name }},');
+        $output = $twig->render("Dear first_name,", array("first_name" => $a) ); 
+
+        echo $twig->render('index.twig', ['nome' => $output]);
+
     }
 }
