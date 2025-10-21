@@ -9,7 +9,7 @@ use Twig\Environment;
 
 class SstiController extends Controller
 {
-        public function show()
+    public function show()
     {
         $vulns = VulnerabilityService::getVulnerability('ssti');
 
