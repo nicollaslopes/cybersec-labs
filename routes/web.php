@@ -5,6 +5,7 @@ use App\Http\Controllers\SqlinjectionController;
 use App\Http\Controllers\XssController;
 use App\Http\Controllers\CommandInjectionController;
 use App\Http\Controllers\CsrfController;
+use App\Http\Controllers\InsecureDeserialization;
 use App\Http\Controllers\LfiController;
 use App\Http\Controllers\NoSqlInjectionController;
 use App\Http\Controllers\RfiController;
@@ -51,3 +52,7 @@ Route::post('/type-juggling/api', [TypeJuggling::class, 'validateApiKey'])->with
 Route::get('/ssti', [SstiController::class, 'show'])->name('ssti');
 Route::get('/ssti/{type}/{level}', [SstiController::class, 'handleSstiController'])->name('ssti_details');
 Route::get('/ssti/twig/1', [TypeJuggling::class, 'sstiTwigLevelOne'])->name('ssti_twig_level_one');
+
+Route::get('/insecure-deserialization', [InsecureDeserialization::class, 'show'])->name('insecure_deserialization');
+Route::get('/insecure-deserialization/{type}/{level}', [InsecureDeserialization::class, 'handleInsecureDeserializationController'])->name('insecure_deserialization_details');
+Route::get('/insecure-deserialization/php/1', [InsecureDeserialization::class, 'insecureDeserializationLevelOne'])->name('insecure_deserialization_php_level_one');
