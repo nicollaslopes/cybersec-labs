@@ -54,5 +54,6 @@ Route::get('/ssti/{type}/{level}', [SstiController::class, 'handleSstiController
 Route::get('/ssti/twig/1', [TypeJuggling::class, 'sstiTwigLevelOne'])->name('ssti_twig_level_one');
 
 Route::get('/insecure-deserialization', [InsecureDeserialization::class, 'show'])->name('insecure_deserialization');
-Route::get('/insecure-deserialization/{type}/{level}', [InsecureDeserialization::class, 'handleInsecureDeserializationController'])->name('insecure_deserialization_details');
-Route::get('/insecure-deserialization/php/1', [InsecureDeserialization::class, 'insecureDeserializationLevelOne'])->name('insecure_deserialization_php_level_one');
+Route::get('/insecure-deserialization/{type}/{level}', function() {
+    include ('../public/insecure-deserialization-php/index.php');
+})->name('insecure_deserialization_details');
