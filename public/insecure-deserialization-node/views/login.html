@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Login</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="/style.css">
+</head>
+<body class="login-page">
+  <div class="login-container">
+    <h1>Welcome Back 👋</h1>
+    <form id="loginForm">
+      <label for="username">Username</label>
+      <input type="text" id="username" name="username" placeholder="Enter your username" required>
+
+      <label for="password">Password</label>
+      <input type="password" id="password" name="password" placeholder="Enter your password" required>
+
+      <button type="submit" class="btn">Sign In</button>
+    </form>
+    <p id="message"></p>
+  </div>
+
+  <script>
+    document.getElementById('loginForm').addEventListener('submit', async function (e) {
+      e.preventDefault();
+
+      const username = document.getElementById('username').value;
+      const password = document.getElementById('password').value;
+      const msg = document.getElementById('message');
+
+      msg.textContent = 'Checking...';
+      msg.style.color = '#fff';
+
+      try {
+        const response = await fetch('/verify', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ username, password })
+        });
+
+        const data = await response.json();
+
+        if (data.success) {
+          msg.textContent = 'Login successful! Redirecting...';
+          setTimeout(() => {
+            window.location.href = '/profile';
+          }, 1000);
+        } else {
+          msg.textContent = data.message;
+          msg.style.color = '#ff8080';
+        }
+      } catch (err) {
+        msg.textContent = 'Connection error. Please try again.';
+        msg.style.color = '#ff8080';
+      }
+    });
+  </script>
+</body>
+</html>
