@@ -13,6 +13,9 @@ class InsecureDeserialization extends Controller
         return view('insecure_deserialization.index', ['vulns' => $vulns]);
     }
 
+    public function node(){
+        return redirect('http://localhost:3000');
+    }
 
     /**
      * exploit

@@ -46,6 +46,16 @@ services:
       ME_CONFIG_MONGODB_PORT: 27017
       ME_CONFIG_BASICAUTH_USERNAME: admin
       ME_CONFIG_BASICAUTH_PASSWORD: admin
+  node-app:
+    image: node:20-alpine              
+    container_name: insecure-node
+    working_dir: /app                  
+    volumes:
+      - ./public/insecure-deserialization-node:/app  
+    command: sh -c "npm install && node server.js"   
+    ports:
+      - "3000:3000"
+    restart: always
 
 volumes:
   mini-shop_db_data:
