@@ -6,6 +6,7 @@ use App\Http\Controllers\XssController;
 use App\Http\Controllers\CommandInjectionController;
 use App\Http\Controllers\CsrfController;
 use App\Http\Controllers\InsecureDeserialization;
+use App\Http\Controllers\JwtController;
 use App\Http\Controllers\LfiController;
 use App\Http\Controllers\NoSqlInjectionController;
 use App\Http\Controllers\RfiController;
@@ -59,3 +60,7 @@ Route::get('/insecure-deserialization', [InsecureDeserialization::class, 'show']
 Route::get('/insecure-deserialization/{type}/{level}', function() {
     include ('../public/insecure-deserialization-php/index.php');
 })->name('insecure_deserialization_details');
+
+Route::get('/jwt', [JwtController::class, 'show'])->name('jwt');
+Route::get('/jwt/{type}/{level}', [JwtController::class, 'handleJwtController'])->name('jwt_details');
+Route::get('/jwt/weak-secret/1', [JwtController::class, 'jwtWeakSecretLevelOne'])->name('jwt_weak_secretlevel_one');
