@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Http\Services\VulnerabilityService;
+use Firebase\JWT\JWT;
+use Firebase\JWT\Key;
 use Illuminate\Http\Request;
 
 class JwtController extends Controller
@@ -29,16 +31,62 @@ class JwtController extends Controller
 
     public function jwtWeakSecretLevelOne() 
     {
-        return view('jwt.weak_secret.jwt-level-1', ['isLogged' => true]);
+        $jwtToken = "";
+        if(!isset($_COOKIE["user"])) {
+            $jwtToken = $this->createJWT();
+            setcookie("user", $jwtToken, time() + 3600);
+            $isJwtValid = $this->validateJWT($jwtToken);
+        } else {
+            $jwtToken = $_COOKIE["user"];
+            $isJwtValid = $this->validateJWT($jwtToken);
+        }
+
+        if(!$isJwtValid) {
+            return view('jwt.weak_secret.jwt-level-1', ["error" => true]);
+        }
+
+        $jwtDecoded = $this->decodeJwt($jwtToken);
+
+        $isAdmin = $jwtDecoded->isAdmin;
+
+        dd($isAdmin);
+
+        // $isAdmin = json_decode($jwtTokenInfo->getContent());
+
+        // dd($jwtToken);
+        
+        return view('jwt.weak_secret.jwt-level-1', ["isAdmin" => ""]);
     }
 
     public function createJWT()
     {
+        // $jwtSecret = "jwt-super-secret";
 
+        $payload = [
+            "user" => "guest",
+            "isAdmin" => false,
+            "iat" => time(),
+            "exp" => time() + 3600,
+        ];
+
+        return JWT::encode($payload, env("JWT_SECRET"), "HS256");
     }
 
-    public function validateJWT()
+    public function validateJWT($jwtToken)
     {
-        
+        try {
+            $isValid = JWT::decode($jwtToken, new Key(env("JWT_SECRET"), "HS256"));
+            if ($isValid) {
+                return true;
+            }
+            return false;
+
+        } catch (\Throwable $th) {
+            echo $th->getMessage();
+        }
+    }
+
+    public function decodeJwt($jwtToken){
+        return JWT::decode($jwtToken, new Key(env("JWT_SECRET"), "HS256"));
     }
 }
