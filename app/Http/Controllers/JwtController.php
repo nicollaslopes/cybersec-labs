@@ -47,21 +47,11 @@ class JwtController extends Controller
 
         $jwtDecoded = $this->decodeJwt($jwtToken);
 
-        $isAdmin = $jwtDecoded->isAdmin;
-
-        dd($isAdmin);
-
-        // $isAdmin = json_decode($jwtTokenInfo->getContent());
-
-        // dd($jwtToken);
-        
-        return view('jwt.weak_secret.jwt-level-1', ["isAdmin" => ""]);
+        return view('jwt.weak_secret.jwt-level-1', ["isAdmin" => $jwtDecoded->isAdmin]);
     }
 
     public function createJWT()
     {
-        // $jwtSecret = "jwt-super-secret";
-
         $payload = [
             "user" => "guest",
             "isAdmin" => false,

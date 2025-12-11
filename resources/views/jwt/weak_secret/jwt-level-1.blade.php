@@ -69,14 +69,13 @@
 <body>
 
     <div class="card">
-        @if ($isLogged)
-            <h1 class="success">✔ Logged In</h1>
+        @if ($isAdmin)
+            <h1 class="success">✔ You're logged as Admin!</h1>
             <p>Your JWT token is valid. Welcome back!</p>
             <a href="#" class="btn">Continue</a>
         @else
-            <h1 class="error">✖ Not Logged In</h1>
+            <h1 class="error">✖ You're not logged as Admin!</h1>
             <p>Your JWT token is missing or invalid.</p>
-            <a href="#" class="btn">Go to Login</a>
         @endif
     </div>
 
